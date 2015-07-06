@@ -421,6 +421,7 @@ define openvpn::server(
   $secret                    = undef,
   $persist_key               = false,
   $persist_tun               = false,
+  $tun_ipv6                  = false,
   $tls_auth                  = false,
   $tls_server                = false,
   $tls_client                = false,

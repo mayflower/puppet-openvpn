@@ -102,6 +102,9 @@ persist-key
 <% if @persist_tun -%>
 persist-tun
 <% end -%>
+<% if @tun_ipv6 -%>
+tun-ipv6
+<% end -%>
 <% if @tcp_nodelay -%>
 tcp-nodelay
 <% end -%>
