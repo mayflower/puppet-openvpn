@@ -1,6 +1,8 @@
-<% unless @remote -%>
-mode server
+<% unless @remote and @mode != 'p2p' -%>
+mode <%= @mode %>
+<% if @mode == 'server' -%>
 client-config-dir /etc/openvpn/<%= @name %>/client-configs
+<% end -%>
 <% else -%>
 client
 <% if @ns_cert_type -%>
@@ -13,6 +15,8 @@ remote <%= rem %>
 server-poll-timeout <%= @server_poll_timeout %>
 <% end -%>
 <% end -%>
+
+<% if not @mode or @mode != 'p2p' -%>
 ca /etc/openvpn/<%= @ca_name %>/keys/ca.crt
 cert /etc/openvpn/<%= @ca_name %>/keys/<%= @ca_common_name %>.crt
 key /etc/openvpn/<%= @ca_name %>/keys/<%= @ca_common_name %>.key
@@ -22,6 +26,8 @@ dh /etc/openvpn/<%= @ca_name %>/keys/dh<%= @ssl_key_size %>.pem
 <% unless @remote -%>
 crl-verify /etc/openvpn/<%= @ca_name %>/crl.pem
 <% end -%>
+<% end -%>
+
 <% if @proto == 'tcp' -%>
 proto <%= @proto %>-server
 <% else -%>

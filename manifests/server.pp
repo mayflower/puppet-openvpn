@@ -364,6 +364,7 @@ define openvpn::server(
   $remote                    = undef,
   $common_name               = 'server',
   $compression               = 'comp-lzo',
+  $mode                      = 'server',
   $dev                       = 'tun0',
   $user                      = 'nobody',
   $group                     = false,
@@ -488,7 +489,7 @@ define openvpn::server(
     notify => $lnotify,
   }
 
-  if !$remote {
+  if !$remote and $mode == 'server' {
     if !$shared_ca {
       # VPN Server Mode
       if $country == undef { fail('country has to be specified in server mode') }
@@ -529,6 +530,9 @@ define openvpn::server(
         mode    => '0750',
         recurse => true,
     }
+  } elsif $mode == 'p2p' {
+    # VPN P2P Mode
+    # nothing special to do
   } else {
     # VPN Client Mode
     $ca_common_name = $name
