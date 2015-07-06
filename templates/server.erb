@@ -151,6 +151,12 @@ key-direction 1
 fragment <%= @fragment %>
 <% end -%>
 
+<% if @secret -%>
+<secret>
+<%= @secret %>
+</secret>
+<% end -%>
+
 #Additional custom options
 <% @custom_options.each_pair do |key, value| -%>
 <%= key %> <%= value %>

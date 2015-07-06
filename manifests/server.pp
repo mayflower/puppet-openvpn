@@ -418,6 +418,7 @@ define openvpn::server(
   $key_ou                    = '',
   $verb                      = '',
   $cipher                    = '',
+  $secret                    = undef,
   $persist_key               = false,
   $persist_tun               = false,
   $tls_auth                  = false,
