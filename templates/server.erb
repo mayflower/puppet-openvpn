@@ -8,11 +8,14 @@ client
 <% if @ns_cert_type -%>
 ns-cert-type server
 <% end -%>
-<% @remote.to_a.each do |rem| -%>
-remote <%= rem %>
-<% end -%>
 <% if @server_poll_timeout -%>
 server-poll-timeout <%= @server_poll_timeout %>
+<% end -%>
+<% end -%>
+
+<% if @remote -%>
+<% @remote.to_a.each do |rem| -%>
+remote <%= rem %>
 <% end -%>
 <% end -%>
 
